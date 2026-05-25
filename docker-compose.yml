@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  doc-mind:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./chroma_db:/app/chroma_db
+      - ./data:/app/data
+      - ./logs:/app/logs
+    env_file:
+      - .env

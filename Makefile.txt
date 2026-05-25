@@ -1,0 +1,16 @@
+.PHONY: setup run test clean
+
+setup:
+	pip install -r requirements.txt
+	pip install -r requirements-dev.txt
+
+run:
+	streamlit run src/main.py
+
+test:
+	pytest tests/ -v
+
+clean:
+	find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
+	find . -type f -name "*.pyc" -delete
+	rm -rf chroma_db/ data/uploads/* logs/* .pytest_cache

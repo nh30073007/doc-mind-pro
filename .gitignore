@@ -1,0 +1,31 @@
+# Virtual environment
+venv/
+venv_final/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local data (user uploads, vector DB, logs)
+chroma_db/
+data/uploads/
+logs/
+*.db
+*.sqlite3
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
