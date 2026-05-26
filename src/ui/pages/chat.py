@@ -65,7 +65,7 @@ def init_session():
         st.session_state.rag_chain = RAGChain()
     if "theme" not in st.session_state:
         st.session_state.theme = "dark"
-    # ট্র্যাক রাখার জন্য কোন ফাইল আগে প্রসেস হয়েছে
+            
     if "processed_files" not in st.session_state:
         st.session_state.processed_files = set()
 
@@ -95,15 +95,15 @@ def rename_session(session_id, new_name):
         st.session_state.sessions[session_id]["name"] = new_name[:50]
         st.rerun()
 
-# ---------- অটো ফাইল প্রসেসিং (কোনো বাটন ছাড়া) ----------
+# ---------- অটো ফাইল প্রসেসিং  ----------
 def auto_process_file(uploaded_file):
     """ফাইল আপলোড হলেই স্বয়ংক্রিয়ভাবে প্রসেস করবে"""
     if uploaded_file is None:
         return
-    # চেক করা ইতিমধ্যে এই ফাইল প্রসেস হয়েছে কিনা (নাম + সাইজ দিয়ে)
+    
     file_key = f"{uploaded_file.name}_{uploaded_file.size}"
     if file_key in st.session_state.processed_files:
-        return  # ইতিমধ্যে প্রসেস করা
+        return  
     
     try:
         file_name = uploaded_file.name
