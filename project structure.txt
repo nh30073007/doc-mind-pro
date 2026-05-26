@@ -2,82 +2,82 @@ project structure
 
 doc_mind_project/
 │
-├── .env.example               # এনভায়রনমেন্ট ভেরিয়েবলের উদাহরণ (ব্যবহারকারী কপি করে .env বানাবে)
-├── .gitignore                 # গিট ইগনোর ফাইল (chroma_db/, data/uploads/, logs/, __pycache__ ইত্যাদি)
-├── docker-compose.yml         # (অপশনাল) OLLAMA + ChromaDB + অ্যাপকে একসাথে চালানোর ডকার কম্পোজ
-├── Dockerfile                 # অ্যাপটিকে ডকার ইমেজে প্যাকেজ করার জন্য
-├── Makefile                   # সাধারণ কমান্ড (make setup, make run, make test) সহজ করতে
-├── pyproject.toml             # আধুনিক পাইথন প্রোজেক্ট কনফিগ (ব্ল্যাক, আইসোর্ট, মাইপাই)
-├── requirements.txt           # রানটাইম ডিপেন্ডেন্সি
-├── requirements-dev.txt       # ডেভেলপমেন্ট ডিপেন্ডেন্সি (pytest, black, mypy, pre-commit ইত্যাদি)
+├── .env.example               
+├── .gitignore                 
+├── docker-compose.yml         
+├── Dockerfile                
+├── Makefile                      
+├── pyproject.toml             
+├── requirements.txt                  
+├── requirements-dev.txt       
 │
-├── config/                    # কনফিগারেশন ম্যানেজমেন্ট
+├── config/                    
 │   ├── __init__.py
-│   ├── settings.py            # pydantic বা ডেটাক্লাস ভিত্তিক সেটিংস (.env পড়ে)
-│   └── logging_config.py      # লগ ফরম্যাট, হ্যান্ডলার, রোটেশন সেটিংস
+│   ├── settings.py            
+│   └── logging_config.py      
 │
-├── src/                       # মূল সোর্স কোড (প্যাকেজ হিসেবে)
+├── src/                      
 │   ├── __init__.py
-│   ├── main.py                # Streamlit অ্যাপের এন্ট্রি পয়েন্ট (আগের app.py)
+│   ├── main.py                
 │   │
-│   ├── core/                  # কোর বিজনেস লজিক
+│   ├── core/                  
 │   │   ├── __init__.py
-│   │   ├── document_processor.py   # ফাইল পার্সিং (pdf, docx, txt, md)
-│   │   ├── chunker.py              # টেক্সট স্প্লিটিং (LangChain বা krecursive)
-│   │   ├── embedding_model.py      # লোকাল এম্বেডিং মডেল (BAAI/bge-m3, all-MiniLM-L6-v2)
-│   │   ├── vector_store.py         # ChromaDB ম্যানেজার (ক্রিয়েট, ইন্সার্ট, ডিলিট, সার্চ)
-│   │   └── rag_chain.py            # রিট্রিভাল + প্রম্পট + LLM কল (RAG পাইপলাইন)
+│   │   ├── document_processor.py   
+│   │   ├── chunker.py              
+│   │   ├── embedding_model.py      
+│   │   ├── vector_store.py         
+│   │   └── rag_chain.py            
 │   │
-│   ├── llm/                    # লোকাল এলএলএম ম্যানেজমেন্ট (Ollama)
+│   ├── llm/                    
 │   │   ├── __init__.py
-│   │   ├── ollama_client.py    # Ollama REST API কল (বা langchain_community.llms.Ollama)
-│   │   └── model_registry.py   # মডেল নাম, কনটেক্সট লেন্থ, টেমপ্লেট ইত্যাদি
+│   │   ├── ollama_client.py    
+│   │   └── model_registry.py       
 │   │
-│   ├── agents/                 # এজেন্টিক ফিচার (ইন্টারেস্ট ডিটেকশন, মেমোরি)
+│   ├── agents/                 
 │   │   ├── __init__.py
-│   │   ├── interest_analyzer.py   # ইউজার ইন্টারেস্ট এক্সট্রাক্ট (রুল+ মিনি ক্লাসিফায়ার)
-│   │   ├── memory_manager.py      # কনভার্সেশন মেমোরি (SQLite বা Redis-সদৃশ লোকাল)
-│   │   └── response_personalizer.py # ইন্টারেস্ট ও মেমোরি ভিত্তিক প্রম্পট জেনারেশন
+│   │   ├── interest_analyzer.py   
+│   │   ├── memory_manager.py      
+│   │   └── response_personalizer.py 
 │   │
-│   ├── utils/                  # হেল্পার ফাংশন
+│   ├── utils/                  
 │   │   ├── __init__.py
-│   │   ├── file_utils.py       # ডিরেক্টরি ক্রিয়েশন, ফাইল চেক, হ্যাশিং
-│   │   ├── ocr_helper.py       # PaddleOCR / Tesseract (ইমেজ থেকে বাংলা টেক্সট)
-│   │   └── text_cleaner.py     # ডকুমেন্ট ক্লিনিং, ইউনিকোড নরমালাইজেশন
+│   │   ├── file_utils.py       
+│   │   ├── ocr_helper.py       
+│   │   └── text_cleaner.py     
 │   │
-│   └── ui/                     # Streamlit UI কম্পোনেন্ট
+│   └── ui/                     
 │       ├── __init__.py
 │       ├── pages/
-│       │   ├── upload.py       # ফাইল আপলোড পেজ
-│       │   ├── chat.py         # চ্যাট ইন্টারফেস পেজ
-│       │   └── admin.py        # (অ্যাডমিন) লগ দেখা, ডাটাবেজ ম্যানেজ, কনফিগ এডিট
+│       │   ├── upload.py      
+│       │   ├── chat.py        
+│       │   └── admin.py      
 │       └── components/
 │           ├── sidebar.py
 │           
 │
-├── data/                       # ব্যবহারকারীর আপলোড করা ফাইল ও মেটাডাটা
-│   ├── uploads/                # আসল ফাইল (uuid নামে সেভ)
-│   └── metadata.db             # SQLite: ফাইল-চাঙ্ক ম্যাপিং, টাইমস্ট্যাম্প, হ্যাশ
+├── data/                       
+│   ├── uploads/                
+│   └── metadata.db           
 │
-├── chroma_db/                  # ChromaDB পার্সিস্টেন্ট ডিরেক্টরি (ভেক্টর স্টোর)
+├── chroma_db/                  
 │
-├── logs/                       # লগ ফাইল (রোটেটিং)
+├── logs/                      
 │   ├── app.log
 │   └── error.log
 │
-├── tests/                      # ইউনিট ও ইন্টিগ্রেশন টেস্ট
+├── tests/                      
 │   ├── __init__.py
 │   ├── test_document_processor.py
 │   ├── test_chunker.py
 │   ├── test_vector_store.py
 │   └── test_rag_chain.py
 │
-├── scripts/                    # সহায়ক স্ক্রিপ্ট
-│   ├── reset_db.py             # ChromaDB ও মেটাডাটা রিসেট
-│   ├── backup_data.py          # zip করে ব্যাকআপ নেয়
-│   └── download_models.py      # লোকাল এম্বেডিং মডেল ডাউনলোড (একবার)
+├── scripts/                        
+│   ├── reset_db.py             
+│   ├── backup_data.py         
+│   └── download_models.py    
 │
-└── docs/                       # ডকুমেন্টেশন
+└── docs/                     
     ├── setup.md
     ├── architecture.md
     └── privacy.md
