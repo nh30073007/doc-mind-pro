@@ -38,7 +38,7 @@ class GroqClient:
                 stream=True,
             )
             for chunk in stream:
-                # কখনো কখনো chunk.choices খালি হতে পারে
+                     
                 if chunk.choices and chunk.choices[0].delta.content:
                     yield chunk.choices[0].delta.content
                 else:
