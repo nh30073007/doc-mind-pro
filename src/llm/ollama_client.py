@@ -14,13 +14,13 @@ class OllamaClient:
         self.generate_url = f"{self.base_url}/api/generate"
     
     def generate(self, prompt: str, temperature=0.7) -> str:
-        """নন-স্ট্রিমিং উত্তর (একবারে পুরো উত্তর)"""
+        
         payload = {
             "model": self.model,
             "prompt": prompt,
             "stream": False,
             "temperature": temperature,
-            "num_predict": 256          # কমিয়ে দিলাম (আগে ছিল 1024)
+            "num_predict": 256          
         }
         try:
             response = requests.post(self.generate_url, json=payload)
@@ -31,13 +31,13 @@ class OllamaClient:
             return "দুঃখিত, ভাষা মডেলটি উত্তর দিতে পারেনি। Ollama চলছে কি না যাচাই করুন।"
     
     def generate_stream(self, prompt: str, temperature=0.7):
-        """স্ট্রিমিং উত্তর (টুকরো টুকরো করে আসবে)"""
+        
         payload = {
             "model": self.model,
             "prompt": prompt,
-            "stream": True,              # স্ট্রিমিং চালু
+            "stream": True,              
             "temperature": temperature,
-            "num_predict": 256           # আউটপুট দৈর্ঘ্য কম (দ্রুত উত্তর)
+            "num_predict": 256           
         }
         try:
             response = requests.post(self.generate_url, json=payload, stream=True)
