@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from groq import Groq
 
-# .env ফাইল থেকে API কী লোড করুন
+
 load_dotenv()
 api_key = os.getenv("GROQ_API_KEY")
 
@@ -12,10 +12,10 @@ if not api_key:
     exit()
 
 try:
-    # ক্লায়েন্ট তৈরি করুন
+    
     client = Groq(api_key=api_key)
     
-    # একটি ছোট প্রম্পট পাঠান
+
     response = client.chat.completions.create(
         messages=[
             {"role": "user", "content": "Say 'API connection successful' in one sentence."}
