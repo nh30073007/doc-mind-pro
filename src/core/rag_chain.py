@@ -39,7 +39,7 @@ class RAGChain:
         lang = interest.get("language", "বাংলা") if interest else "বাংলা"
         tone = interest.get("tone", "বন্ধুত্বপূর্ণ") if interest else "বন্ধুত্বপূর্ণ"
         
-        # Groq মডেল ইংরেজিতে সবচেয়ে ভালো কাজ করে
+       ে
         return f"""You are a helpful assistant. Answer based on the following document.
 
 Level: {level}
